@@ -19,12 +19,13 @@ app.get('/', function (req, res) {
 
 app.post('/api/fileanalyse', upload.single('upfile'), function (req, res) {
   console.log('req.body', req.file)
+
   if (!req.file) {
     res.send('upfile empty')
     return
   }
   res.json({
-    name: req.file.fieldname,
+    name: req.file.originalname,
     type: req.file.mimetype,
     size: req.file.size,
   })
